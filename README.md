@@ -1,4 +1,4 @@
-# Exact Screenshot
+# Flight-fare-finder
 
 Implement exactly the screenshot and nothing else
 
