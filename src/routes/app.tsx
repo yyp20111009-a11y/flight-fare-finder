@@ -1,32 +1,25 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { useHead } from "@/hooks/useHead";
 import { SiteHeader, btnGhost } from "@/components/SiteHeader";
 
-export const Route = createFileRoute("/app")({
-  head: () => ({
-    meta: [
-      { title: "Dashboard — Flight Price Notifier" },
-      { name: "description", content: "Your flight route tracking dashboard." },
-      { property: "og:title", content: "Dashboard — Flight Price Notifier" },
-      { property: "og:description", content: "Your flight route tracking dashboard." },
-    ],
-  }),
-  component: AppShell,
-});
-
-function AppShell() {
+export function AppShell() {
+  useHead({
+    title: "Dashboard — Flight Price Notifier",
+    description: "Your flight route tracking dashboard.",
+  });
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !user) navigate({ to: "/signin" });
+    if (!loading && !user) navigate("/signin");
   }, [loading, user, navigate]);
 
   async function signOut() {
     await supabase.auth.signOut();
-    navigate({ to: "/" });
+    navigate("/");
   }
 
   return (

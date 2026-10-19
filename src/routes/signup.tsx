@@ -1,14 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { AuthForm } from "@/components/AuthForm";
+import { useHead } from "@/hooks/useHead";
 
-export const Route = createFileRoute("/signup")({
-  head: () => ({
-    meta: [
-      { title: "Sign up — Flight Price Notifier" },
-      { name: "description", content: "Create an account and get emailed when fares drop." },
-      { property: "og:title", content: "Sign up — Flight Price Notifier" },
-      { property: "og:description", content: "Create an account and get emailed when fares drop." },
-    ],
-  }),
-  component: () => <AuthForm mode="signup" />,
-});
+export function SignUp() {
+  useHead({
+    title: "Sign up — Flight Price Notifier",
+    description: "Create an account and get emailed when fares drop.",
+  });
+  return <AuthForm mode="signup" />;
+}

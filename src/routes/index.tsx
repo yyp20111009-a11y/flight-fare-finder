@@ -1,18 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SiteHeader, btnPrimary } from "@/components/SiteHeader";
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Flight Price Notifier — 機票降價通知" },
-      { name: "description", content: "Set a route and a target price — we email you when the fare drops." },
-      { property: "og:title", content: "Flight Price Notifier — 機票降價通知" },
-      { property: "og:description", content: "Set a route and a target price — we email you when the fare drops." },
-    ],
-  }),
-  component: Index,
-});
+import { useHead } from "@/hooks/useHead";
 
 const features = [
   { icon: "◎", title: "盯緊熱門航線 (Always-on route watching)", body: "持續監控台北出發的熱門航線（東京、首爾），自動抓最低票價。" },
@@ -37,7 +26,11 @@ function Reveal({ children, delay = 0 }: { children: ReactNode; delay?: number }
   );
 }
 
-function Index() {
+export function Index() {
+  useHead({
+    title: "Flight Price Notifier — 機票降價通知",
+    description: "Set a route and a target price — we email you when the fare drops.",
+  });
   return (
     <div className="min-h-screen bg-glow">
       <SiteHeader right={<Link to="/signin" className={btnPrimary}>Sign in / 登入</Link>} />
