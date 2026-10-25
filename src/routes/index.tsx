@@ -32,15 +32,15 @@ export function Index() {
     description: "Set a route and a target price — we email you when the fare drops.",
   });
   return (
-    <div className="min-h-screen bg-glow">
+    <div className="min-h-screen bg-brocade">
       <SiteHeader right={<Link to="/signin" className={btnPrimary}>Sign in / 登入</Link>} />
       <main>
         <section className="mx-auto max-w-4xl px-5 pb-20 pt-24 text-center md:pt-32">
-          <p className="animate-fade-up text-sm font-medium uppercase tracking-[0.2em] text-accent">機票降價通知</p>
-          <h1 className="animate-fade-up mt-4 text-5xl font-bold tracking-tight text-gradient md:text-7xl">
+          <p className="animate-fade-up ornament font-serif text-sm font-medium uppercase tracking-[0.35em] text-accent">機票降價通知</p>
+          <h1 className="animate-fade-up mt-4 text-5xl font-semibold tracking-tight text-gradient md:text-7xl">
             Flight Price Notifier
           </h1>
-          <p className="animate-fade-up mt-6 text-xl font-medium md:text-2xl">設定航線與目標價，機票降價就通知你</p>
+          <p className="animate-fade-up mt-6 font-serif text-xl font-medium md:text-2xl">設定航線與目標價，機票降價就通知你</p>
           <p className="animate-fade-up mt-3 text-muted-foreground">
             Set a route and a target price — we email you when the fare drops.
           </p>
@@ -51,8 +51,8 @@ export function Index() {
         <section className="mx-auto grid max-w-6xl gap-5 px-5 pb-28 md:grid-cols-3">
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 120}>
-              <article className="h-full rounded-2xl border border-border bg-card p-7 transition hover:border-primary/50">
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/15 text-xl text-accent">{f.icon}</div>
+              <article className="h-full rounded-2xl border border-border bg-card p-7 shadow-silk backdrop-blur-sm transition hover:-translate-y-1 hover:border-gold/70">
+                <div className="grid h-11 w-11 place-items-center rounded-full bg-jade/25 text-xl text-accent ring-1 ring-gold/50">{f.icon}</div>
                 <h3 className="mt-5 text-lg font-semibold">{f.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.body}</p>
               </article>

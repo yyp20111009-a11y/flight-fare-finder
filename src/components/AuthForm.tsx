@@ -28,19 +28,19 @@ export function AuthForm({ mode }: { mode: "signin" | "signup" }) {
   }
 
   const input =
-    "w-full rounded-lg border border-input bg-secondary px-3 py-2.5 text-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30";
+    "w-full rounded-lg border border-input bg-background/80 px-3 py-2.5 text-sm outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30";
 
   return (
-    <div className="min-h-screen bg-glow">
+    <div className="min-h-screen bg-brocade">
       <SiteHeader />
       <main className="mx-auto flex max-w-md flex-col px-5 py-16 animate-fade-up">
-        <h1 className="text-3xl font-semibold tracking-tight">
+        <h1 className="text-4xl font-semibold tracking-tight">
           {isSignUp ? "Create account / 註冊" : "Sign in / 登入"}
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
           {isSignUp ? "Start watching fares in seconds." : "Welcome back."}
         </p>
-        <form onSubmit={onSubmit} className="mt-8 space-y-4 rounded-2xl border border-border bg-card p-6">
+        <form onSubmit={onSubmit} className="mt-8 space-y-4 rounded-2xl border border-border bg-card p-6 shadow-silk backdrop-blur-sm">
           <label className="block space-y-1.5 text-sm">
             <span className="text-muted-foreground">Email</span>
             <input className={input} type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" />

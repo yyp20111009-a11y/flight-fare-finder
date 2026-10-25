@@ -5,7 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Noto Sans TC", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Noto Serif TC", ui-serif, Georgia, serif;
+  --color-gold: var(--gold);
+  --color-jade: var(--jade);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -33,37 +36,48 @@
 }
 
 :root {
+  /* Palette drawn from a Tang-style hanfu portrait: ivory silk, celadon brocade,
+     coral embroidery, antique-gold hairpins and warm ink-brown hair. */
   --radius: 0.75rem;
-  --background: oklch(0.13 0.012 290);
-  --foreground: oklch(0.97 0.005 290);
-  --card: oklch(0.18 0.02 290);
-  --card-foreground: oklch(0.97 0.005 290);
-  --popover: oklch(0.18 0.02 290);
-  --popover-foreground: oklch(0.97 0.005 290);
-  --primary: oklch(0.66 0.21 295);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.23 0.025 290);
-  --secondary-foreground: oklch(0.97 0.005 290);
-  --muted: oklch(0.23 0.025 290);
-  --muted-foreground: oklch(0.7 0.03 290);
-  --accent: oklch(0.78 0.15 300);
-  --accent-foreground: oklch(0.13 0.012 290);
-  --destructive: oklch(0.65 0.22 25);
+  --background: oklch(0.965 0.014 78);
+  --foreground: oklch(0.27 0.025 50);
+  --card: oklch(0.985 0.009 85 / 82%);
+  --card-foreground: oklch(0.27 0.025 50);
+  --popover: oklch(0.985 0.009 85);
+  --popover-foreground: oklch(0.27 0.025 50);
+  --primary: oklch(0.52 0.065 200);
+  --primary-foreground: oklch(0.985 0.01 85);
+  --secondary: oklch(0.935 0.02 80);
+  --secondary-foreground: oklch(0.27 0.025 50);
+  --muted: oklch(0.935 0.02 80);
+  --muted-foreground: oklch(0.5 0.025 55);
+  --accent: oklch(0.6 0.14 33);
+  --accent-foreground: oklch(0.985 0.01 85);
+  --destructive: oklch(0.55 0.19 28);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(1 0 0 / 9%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.66 0.21 295);
-  --gradient-glow: radial-gradient(60% 50% at 50% 0%, oklch(0.55 0.22 295 / 35%), transparent 70%);
-  --gradient-text: linear-gradient(120deg, oklch(0.97 0.005 290), oklch(0.78 0.15 300));
-  --shadow-glow: 0 10px 40px -10px oklch(0.66 0.21 295 / 55%);
+  --border: oklch(0.7 0.07 78 / 38%);
+  --input: oklch(0.7 0.07 78 / 45%);
+  --ring: oklch(0.52 0.065 200);
+  --gold: oklch(0.7 0.095 78);
+  --jade: oklch(0.74 0.045 195);
+  --gradient-glow:
+    radial-gradient(55% 45% at 85% 5%, oklch(0.78 0.05 195 / 38%), transparent 70%),
+    radial-gradient(45% 40% at 8% 25%, oklch(0.85 0.07 40 / 30%), transparent 70%),
+    radial-gradient(70% 50% at 50% 100%, oklch(0.88 0.05 80 / 45%), transparent 70%);
+  --gradient-text: linear-gradient(120deg, oklch(0.45 0.06 205), oklch(0.62 0.1 70) 55%, oklch(0.6 0.14 33));
+  --shadow-glow: 0 10px 30px -12px oklch(0.52 0.065 200 / 55%);
+  --shadow-silk: 0 1px 0 oklch(1 0 0 / 70%) inset, 0 18px 40px -24px oklch(0.45 0.05 60 / 35%);
 }
 
 @layer base {
   * { border-color: var(--color-border); }
+  h1, h2, h3 { font-family: var(--font-serif); letter-spacing: 0.01em; }
+  ::selection { background: oklch(0.6 0.14 33 / 25%); }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
   }
 }
@@ -76,6 +90,29 @@
   color: transparent;
 }
 @utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility shadow-silk { box-shadow: var(--shadow-silk); }
+/* Faint brocade lattice laid over the silk background. */
+@utility bg-brocade {
+  background-image:
+    radial-gradient(circle at 50% 50%, oklch(0.7 0.07 78 / 14%) 1.2px, transparent 1.6px),
+    var(--gradient-glow);
+  background-size: 22px 22px, auto;
+}
+/* Thin gold rule with a lozenge, like a hairpin ornament. */
+@utility ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--gold);
+  &::before, &::after {
+    content: "";
+    height: 1px;
+    width: 4rem;
+    background: linear-gradient(90deg, transparent, var(--gold));
+  }
+  &::after { background: linear-gradient(270deg, transparent, var(--gold)); }
+}
 
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(16px); }

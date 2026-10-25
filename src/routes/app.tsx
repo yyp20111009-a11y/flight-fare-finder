@@ -23,11 +23,11 @@ export function AppShell() {
   }
 
   return (
-    <div className="min-h-screen bg-glow">
+    <div className="min-h-screen bg-brocade">
       <SiteHeader right={user && <button onClick={signOut} className={btnGhost}>Sign out / 登出</button>} />
       <main className="mx-auto max-w-3xl px-5 py-20">
         {user && (
-          <div className="animate-fade-up rounded-2xl border border-border bg-card p-8">
+          <div className="animate-fade-up rounded-2xl border border-border bg-card p-8 shadow-silk backdrop-blur-sm">
             <h1 className="text-3xl font-semibold tracking-tight">Hi {user.email}</h1>
             <p className="mt-4 text-foreground">你的航線追蹤儀表板即將上線 — 下一個里程碑會加上訂閱航線的功能。</p>
             <p className="mt-2 text-sm text-muted-foreground">
